@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./App.css";
 
@@ -20,11 +20,11 @@ function App() {
 
   return (
     <>
-      <div className="bg- min-h-screen">
+      <div className="min-h-screen bg-cover">
         <header className="bg-blue-500 text-white text-center py-4">
-          <h1 className="text-2xl font-black">ยาสีฟันที่มีฟลูออไรด์ 1500 ppm</h1>
+          <h1 className="text-2xl font-black">ยาสีฟันฟลูออไรด์ 1500 ppm ที่กรมอนามัยแนะนำ</h1>
         </header>
-        <main className="p-4">
+        <main className="p-4 w-full h-full">
           <ToothpasteList />
         </main>
       </div>

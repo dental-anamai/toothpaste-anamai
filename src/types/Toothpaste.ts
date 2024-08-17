@@ -1,9 +1,20 @@
 // src/types/Toothpaste.ts
-export interface Toothpaste {
-    image: string;  // Base64 encoded image or URL
-    name: string;
+
+export type Toothpaste = {
+    id: number;
+    barcode: string;
+    toothpasteName: string;
+    imageUrl: string;
+    manufacturer: string;
+    importer: string;
+    distributor: string;
+    toothpasteType: string;
+    ingredients: string;
     ageGroup: string;
-    fluorideContent: number;
+    labelWarnings: string;
+    containsFluoride: number; // 1 = Yes, 0 = No
+    fluorideAmountLabeled: number; // 1 = Labeled, 0 = Not Labeled
+    fluorideAmount: string;
     benefits: string;
-  }
+  };
   
