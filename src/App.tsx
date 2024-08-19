@@ -5,6 +5,7 @@ import "./App.css";
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
 import ToothpasteList from "./components/ToothpasteList"
+import BackToTopButton from "./components/BackToTopButton"
 declare global {
   interface Window {
     HSStaticMethods: IStaticMethods;
@@ -27,6 +28,7 @@ function App() {
         <main className="p-4 w-full h-full">
           <ToothpasteList />
         </main>
+        <BackToTopButton /> 
       </div>
     </>
   );

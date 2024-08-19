@@ -1,5 +1,5 @@
 // src/components/ToothpasteCard.tsx
-import React from "react";
+import React, { useState } from "react";
 import { Toothpaste } from "../types/Toothpaste";
 
 interface ToothpasteCardProps {
@@ -7,6 +7,7 @@ interface ToothpasteCardProps {
 }
 
 const ToothpasteCard: React.FC<ToothpasteCardProps> = ({ toothpaste }) => {
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const toothpasteBrand: string =
     toothpaste.toothpasteName.indexOf(" รุ่น") > 0
       ? toothpaste.toothpasteName.slice(
@@ -23,11 +24,15 @@ const ToothpasteCard: React.FC<ToothpasteCardProps> = ({ toothpaste }) => {
   return (
     <div className="max-w-sm rounded shadow-lg card">
       <div className="w-full shadow">
+        {!imageLoaded && (
+          <div className="w-full h-64 bg-gray-200 animate-pulse rounded-t-lg"></div>
+        )}
         <img
           loading="lazy"
           className="w-full object-contain object-top rounded-t-lg"
-          src={toothpaste.imageUrl}
+          src={"toothpaste-images/Picture" + toothpaste.id + ".png"}
           alt={toothpaste.toothpasteName}
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
 
