@@ -1,36 +1,100 @@
 // src/components/ToothpasteList.tsx
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import ToothpasteCard from "./ToothpasteCard";
 import { Toothpaste } from "../types/Toothpaste";
 
 import Papa from "papaparse";
-import { sortFluorideAmount } from "../utils/sortFluorideAmount";
+// import { sortFluorideAmount } from "../utils/sort-functions";
 
 const ToothpasteList: React.FC = () => {
   const [csvText, setCsvText] = useState<string>("");
+  const [sortedToothpastes, setSortedToothpastes] = useState<Toothpaste[]>([]);
+  const [sortOption, setSortOption] = useState<string>("name_asc");
 
   useEffect(() => {
-    fetch("/toothpastes.csv")
+    fetch("toothpastes.csv")
       .then((response) => response.text())
       .then((data) => setCsvText(data));
   }, []);
 
   const toothpastes = useMemo(() => {
     if (!csvText) return [];
+    // console.log(csvText);
     const parsedData = Papa.parse<Toothpaste>(csvText, {
       header: true,
       dynamicTyping: true,
     });
-    const sortedFluorideAmount = sortFluorideAmount(parsedData.data);
-    console.log(sortedFluorideAmount);
-    return sortedFluorideAmount;
+
+    return parsedData.data;
   }, [csvText]); // Recompute if csvText changes
+
+  useEffect(() => {
+    if (toothpastes.length > 0) {
+      let sorted: Toothpaste[] = [];
+
+      switch (sortOption) {
+        case "name_asc":
+          sorted = toothpastes.sort((a, b) =>
+            a.toothpasteName.localeCompare(b.toothpasteName)
+          );
+          break;
+        case "name_desc":
+          sorted = toothpastes.sort((a, b) =>
+            b.toothpasteName.localeCompare(a.toothpasteName)
+          );
+          break;
+        case "fluoride_asc":
+          sorted = toothpastes.sort((a, b) => {
+            const fluorideA = parseFloat(a.fluorideAmount) || 0;
+            const fluorideB = parseFloat(b.fluorideAmount) || 0;
+            return fluorideA - fluorideB; // Ascending
+          });
+          break;
+        case "fluoride_desc":
+          sorted = toothpastes.sort((a, b) => {
+            const fluorideA = parseFloat(a.fluorideAmount) || 0;
+            const fluorideB = parseFloat(b.fluorideAmount) || 0;
+            return fluorideB - fluorideA; // Descending
+          });
+          break;
+        default:
+          break;
+      }
+
+      setSortedToothpastes([...sorted]);
+    }
+  }, [toothpastes, sortOption]);
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(e.target.value);
+  };
 
   return (
     <div className="container mx-auto py-4">
-      {toothpastes.length > 0 ? (
+      <div className="mb-4">
+        <label htmlFor="sortMenu" className="mr-2">
+          เรียงลำดับตาม:
+        </label>
+        <select
+          id="sortMenu"
+          value={sortOption}
+          onChange={handleSortChange}
+          className="border rounded p-2 text-black"
+        >
+          <option value="name_asc">ยี่ห้อ (ก-ฮ)</option>
+          <option value="name_desc">ยี่ห้อ (ฮ-ก)</option>
+          <option value="fluoride_asc">
+            ปริมาณฟลูออไรด์ (น้อย {">"} มาก)
+          </option>
+          <option value="fluoride_desc">
+            ปริมาณฟลูออไรด์ (มาก {">"} น้อย)
+          </option>
+        </select>
+      </div>
+
+      {sortedToothpastes.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {toothpastes.map((toothpaste: Toothpaste, index: number) =>
+          {sortedToothpastes.map((toothpaste: Toothpaste, index: number) =>
             toothpaste.containsFluoride &&
             Number(toothpaste.fluorideAmount) >= 1300 ? (
               <ToothpasteCard key={index} toothpaste={toothpaste} />

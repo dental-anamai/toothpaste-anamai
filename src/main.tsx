@@ -4,12 +4,14 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/toothpaste-anamai/",
+      element: <App />,
+    },
+  ],
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
