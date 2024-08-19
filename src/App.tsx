@@ -21,8 +21,8 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-cover">
-        <header className="bg-blue-500 text-white text-center py-4">
-          <h1 className="text-2xl font-black">ยาสีฟันฟลูออไรด์ 1500 ppm ที่กรมอนามัยแนะนำ</h1>
+        <header className="text-white text-center py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
+          <h1 className="text-2xl font-black">🪥ยาสีฟันฟลูออไรด์ 1500 ppm ที่กรมอนามัยแนะนำ🦷</h1>
         </header>
         <main className="p-4 w-full h-full">
           <ToothpasteList />

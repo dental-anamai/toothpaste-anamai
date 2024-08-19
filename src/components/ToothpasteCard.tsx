@@ -33,7 +33,7 @@ const ToothpasteCard: React.FC<ToothpasteCardProps> = ({ toothpaste }) => {
 
       <div className="px-6 py-4">
         <div className="w-full content-center mb-2">
-          <div className="font-bold text-balance text-lg text-[#33539E] ">
+          <div className="font-bold text-balance text-lg bg-gradient-to-r from-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
             {toothpasteBrand}
           </div>
           <div className="font-bold text-balance text-md text-[#33539E] ">
