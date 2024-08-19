@@ -9,7 +9,7 @@ import Papa from "papaparse";
 const ToothpasteList: React.FC = () => {
   const [csvText, setCsvText] = useState<string>("");
   const [sortedToothpastes, setSortedToothpastes] = useState<Toothpaste[]>([]);
-  const [sortOption, setSortOption] = useState<string>("name_asc");
+  const [sortOption, setSortOption] = useState<string>("fluoride_desc");
 
   useEffect(() => {
     fetch("toothpastes.csv")
