@@ -59,9 +59,11 @@ const ToothpasteCard: React.FC<ToothpasteCardProps> = ({ toothpaste }) => {
           </div>
 
           <div className="text-gray-700 text-base text-start">สรรพคุณ:</div>
-          <div className="text-gray-700 text-base text-start text-pretty">
-            {toothpaste.benefits}
-          </div>
+          <ul className="marker:text-blue-600 list-disc text-base text-gray-700 text-start">
+            {toothpaste.benefits.split(", ").map((benefit, index) => (
+              <li key={index}>{benefit}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

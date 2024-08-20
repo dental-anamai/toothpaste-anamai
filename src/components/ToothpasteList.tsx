@@ -4,7 +4,6 @@ import ToothpasteCard from "./ToothpasteCard";
 import { Toothpaste } from "../types/Toothpaste";
 
 import Papa from "papaparse";
-// import { sortFluorideAmount } from "../utils/sort-functions";
 
 const ToothpasteList: React.FC = () => {
   const [csvText, setCsvText] = useState<string>("");
@@ -83,9 +82,7 @@ const ToothpasteList: React.FC = () => {
         >
           <option value="name_asc">ยี่ห้อ (ก-ฮ)</option>
           <option value="name_desc">ยี่ห้อ (ฮ-ก)</option>
-          <option value="fluoride_asc">
-            ปริมาณฟลูออไรด์ (น้อย {">"} มาก)
-          </option>
+          <option value="fluoride_asc">ปริมาณฟลูออไรด์ (น้อย {">"} มาก)</option>
           <option value="fluoride_desc">
             ปริมาณฟลูออไรด์ (มาก {">"} น้อย)
           </option>
