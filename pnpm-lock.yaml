@@ -69,6 +69,9 @@ importers:
       vite:
         specifier: ^5.4.1
         version: 5.4.1(@types/node@22.3.0)
+      vite-plugin-radar:
+        specifier: ^0.9.6
+        version: 0.9.6(vite@5.4.1(@types/node@22.3.0))
 
 packages:
 
@@ -1355,6 +1358,11 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  vite-plugin-radar@0.9.6:
+    resolution: {integrity: sha512-tLvUt7+iZznxYa8GmCrZBV3Q0fLQApsyg9EIJgaen8DjGky3vFIq9KoDWAoVMs9FZ5qbsSBb3YfSvoqwVV+5xw==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite@5.4.1:
     resolution: {integrity: sha512-1oE6yuNXssjrZdblI9AfBbHCC41nnyoVoEZxQnID6yvQZAFBzxxkqoFLtHUMkYunL8hwOLEjgTuxpkRxvba3kA==}
@@ -2664,6 +2672,10 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  vite-plugin-radar@0.9.6(vite@5.4.1(@types/node@22.3.0)):
+    dependencies:
+      vite: 5.4.1(@types/node@22.3.0)
 
   vite@5.4.1(@types/node@22.3.0):
     dependencies:
